@@ -15,6 +15,9 @@ public class OwnerService {
     public List<Owner> listOwners(){
         return ownerRepository.findAll();
     }
+    public Owner getOwner(long id){
+        return ownerRepository.findById(id).orElseThrow(() -> new RuntimeException("No se encontro el owner"));
+    }
 
     public Owner saveOwner(Owner o) {
         return ownerRepository.save(o);

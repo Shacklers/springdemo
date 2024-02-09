@@ -6,9 +6,7 @@ import com.example.demo.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,6 +35,27 @@ public class PetViewController {
     public String savePets(Pet p, @RequestParam Long idOwner){
         petService.savePet(p,idOwner);
         return "redirect:/pets";
+    }
+
+    @GetMapping("/eliminarMascota/{id}")
+    public String deletePete(@PathVariable Long id){
+        petService.deletePet(id);
+        return "redirect:/mascotas";
+    }
+
+    @GetMapping("/actualizarMascota/{id}")
+    public String showFormUpdatePet(@PathVariable Long id, Model model){
+        Pet pet = petService.getPetById(id);
+        model.addAttribute("mascota", pet);
+        model.addAttribute("Owners", ownerService.listOwners());
+        return "actualizarMascota";
+    }
+
+    @PostMapping("/actualizarMascota/{id}")
+    public String updatePet(@PathVariable Long id, @ModelAttribute Pet updatedPet, Long ownerId){
+        updatedPet.setOwner(ownerService.getOwner(ownerId));
+        petService.actualizarPet(id, updatedPet);
+        return "redirect:/mascotas";
     }
 
 }

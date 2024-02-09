@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head  th:insert="~{fragments/header}">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Lista de mascotas</h2>
+    <a th:href="@{/addOwners}">
+        <Button>Agregar dueño</Button>
+    </a>
+    <a th:href="@{/addPets}">
+        <Button>Agregar mascota</Button>
+    </a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Especie</th>
+                <th>Edad</th>
+                <th>Dueño</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="mascota : ${pets}">
+                <td th:text="${pets.id}"></td>
+                <td th:text="${pets.nombre}"></td>
+                <td th:text="${pets.especie}"></td>
+                <td th:text="${pets.edad}"></td>
+                <td th:text="${pets.owner.nombre}"></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+</body>
+</html>
