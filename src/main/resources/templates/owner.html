@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Direccion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="owner : ${owner}">
+        <td th:text="${owner.id}"></td>
+        <td th:text="${owner.nombre}"></td>
+        <td th:text="${owner.direccion}"></td>
+
+
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{pets}">Ver lista de mascotas</a>
+
+</body>
+</html>

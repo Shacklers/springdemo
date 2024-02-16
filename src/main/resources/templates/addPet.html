@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Agregar mascotas</h1>
+    <h2>Agregar Mascota</h2>
+
+    <form th:action="@{/savePets}" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required/><br/>
+
+        <label for="especie">Especie:</label>
+        <input type="text" id="especie" name="especie" required/><br/>
+
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" required/><br/>
+
+        <!-- Lista desplegable para seleccionar el dueño -->
+        <label for="owner">Dueño:</label>
+        <select id="owner" name="idOwner" required>
+            <option th:each="owner : ${owner}" th:value="${owner.id}" th:text="${owner.nombre}"></option>
+        </select><br/>
+
+        <button type="submit">Guardar Mascota</button>
+    </form>
+
+    <hr>
+
+    <a th:href="@{/pets}">Ver Lista de Mascotas</a>
+</body>
+</html>
