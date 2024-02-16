@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form th:action="@{/actualizarMascota/{id}(id=${pets.id})}" method = "post">
+        <input type="hidden" name="_method" value="put">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" th:value="${pets.nombre}">
+
+        <label for="especie">Especie:</label>
+        <input type="text" id="especie" name="especie" th:value="${pets.especie}">
+
+        <label for="edad">Edad:</label>
+        <input type="text" id="edad" name="edad" th:value="${pets.edad}">
+        <label for="idOwner">Dueño</label>
+        <select id="idOwner" name = 'idOwner'>
+            <option th:each="owner:${owner}" th:value="${owner.id}" th:text="${owner.nombre}" th:selected="${owner.id eq pets.owner.id}">
+
+            </option>
+
+        </select>
+        <button>Actualizar mascota</button>
+    </form>
+</body>
+</html>

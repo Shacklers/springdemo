@@ -27,35 +27,38 @@ public class PetViewController {
 
     @GetMapping("/addPets")
     public String addPets(Model model){
-        model.addAttribute("owners",ownerService.listOwners());
-        return "add pets";
+        model.addAttribute("owner",ownerService.listOwners());
+        return "addPet";
     }
 
     @PostMapping("/savePets")
     public String savePets(Pet p, @RequestParam Long idOwner){
         petService.savePet(p,idOwner);
+
         return "redirect:/pets";
     }
 
     @GetMapping("/eliminarMascota/{id}")
     public String deletePete(@PathVariable Long id){
         petService.deletePet(id);
-        return "redirect:/mascotas";
+        return "redirect:/pets";
     }
 
     @GetMapping("/actualizarMascota/{id}")
     public String showFormUpdatePet(@PathVariable Long id, Model model){
         Pet pet = petService.getPetById(id);
-        model.addAttribute("mascota", pet);
-        model.addAttribute("Owners", ownerService.listOwners());
+        model.addAttribute("pets", pet); //debe ser igual el nombre al objeto enviado.
+        model.addAttribute("owner", ownerService.listOwners());
         return "actualizarMascota";
     }
 
     @PostMapping("/actualizarMascota/{id}")
-    public String updatePet(@PathVariable Long id, @ModelAttribute Pet updatedPet, Long ownerId){
-        updatedPet.setOwner(ownerService.getOwner(ownerId));
+    public String updatePet(@PathVariable Long id, @ModelAttribute Pet updatedPet, @RequestParam Long idOwner){
+        System.out.println("El id del post es:"+idOwner);
+        updatedPet.setOwner(ownerService.getOwner(idOwner));
+
         petService.actualizarPet(id, updatedPet);
-        return "redirect:/mascotas";
+        return "redirect:/pets";
     }
 
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <H1>agregar dueños</H1>
+    <form th:action="@{/saveOwner}" method="post" th:object="${owner}">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" th:field="*{nombre}" >
+        <label for="direccion">Direccion</label>
+        <input type="text" id="direccion" name="direccion" th:field="*{direccion}" >
+        <Button type="submit">Enviar</Button>
+
+    </form>
+    <hr>
+    <a th:href="@{/owners}"> Ver Owners</a>
+</body>
+</html>

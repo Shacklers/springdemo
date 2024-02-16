@@ -25,8 +25,10 @@ public class OwnerViewController {
     }
 
     @GetMapping("/addOwners")
-    public void showFormAddOwner(Model model){
-        model.addAttribute("", new Owner());
+    public String mostrarFormularioAgregarDuenio(Model model){
+        model.addAttribute("owner", new Owner());
+
+        return "addOwner";
     }
 
     @PostMapping("/saveOwner")

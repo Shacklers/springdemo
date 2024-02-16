@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head  th:insert="~{fragments/header}">
+<head >
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -23,16 +23,26 @@
                 <th>Especie</th>
                 <th>Edad</th>
                 <th>Dueño</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="mascota : ${pets}">
+            <tr th:each="pets : ${pets}">
                 <td th:text="${pets.id}"></td>
                 <td th:text="${pets.nombre}"></td>
                 <td th:text="${pets.especie}"></td>
                 <td th:text="${pets.edad}"></td>
                 <td th:text="${pets.owner.nombre}"></td>
-
+                <td>
+                    <a th:href="@{/eliminarMascota/{id}(id=${pets.id})}">
+                        <button>Eliminar</button>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{/actualizarMascota/{id}(id=${pets.id})}">
+                        <button>Actualizar</button>
+                    </a>
+                </td>
             </tr>
         </tbody>
     </table>

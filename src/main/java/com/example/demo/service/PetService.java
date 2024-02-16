@@ -4,11 +4,14 @@ import com.example.demo.model.Owner;
 import com.example.demo.model.Pet;
 import com.example.demo.repository.OwnerRepository;
 import com.example.demo.repository.PetRepository;
+import jdk.jfr.DataAmount;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class PetService {
@@ -19,7 +22,8 @@ public class PetService {
     private OwnerRepository ownerRepository;
 
     public List<Pet> petList(){
-        return petRepository.findAll();
+        Sort sortBy = Sort.by(Sort.Direction.DESC, "nombre");
+        return petRepository.findAll(sortBy);
     }
 
     public Pet getPetById(Long id){
